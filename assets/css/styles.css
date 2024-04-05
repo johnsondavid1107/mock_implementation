@@ -1,0 +1,23 @@
+.center{
+    display: flex;
+flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5vw;
+}
+
+h2, h1{
+    font-family: Fira Sans,sans-serif;
+    color: #30364d;
+    font-size: 3rem;
+}
+h2{
+    text-decoration: underline;
+}
+
+li{
+    font-family: Fira Sans,sans-serif;
+    font-size: 2rem;
+    color: #30364d;
+    padding: 2vw;
+}
