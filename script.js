@@ -18,7 +18,12 @@ $(document).ready(function () {
     },
     {
         id: "implementationPlan",
-        animation: "fadeTo"
+        animation: "fadeTo",
+        subSlide: [{
+            id: "demo",
+            animation: 'swipeTo'
+
+        }]
     },
     {
         id: "actionItems",
@@ -35,16 +40,27 @@ $(document).ready(function () {
     ];
 
     var demoIndex = 0;
+    var subSlideIndex = 0
     $(document).on("keydown", function (e) {
 
         if (demoIndex + 1 < demoArray.length) {
 
             //Go forward in slideshow
             if (e.code === "ArrowRight") {
+                if (demoArray[demoIndex]["subSlide"] && subSlideIndex < demoArray[demoIndex]["subSlide"].length) {
+                    $("#content").animate({
+                        "margin-right": "2000px"
+                    });
+                    return
+                } else {
+                    console.log("no slides to show")
+                }
+
                 $("#" + demoArray[demoIndex]["id"]).fadeOut("slow", function () {
                     demoIndex++;
-                  
+
                     console.log("Demo Index is  " + demoIndex)
+
                     $("#" + demoArray[demoIndex]["id"]).fadeIn("slow", function () {
 
                     });
@@ -60,7 +76,7 @@ $(document).ready(function () {
             if (e.code === "ArrowLeft") {
                 $("#" + demoArray[demoIndex]["id"]).fadeOut("slow", function () {
                     demoIndex--;
-                  
+
                     console.log("Demo Index is  " + demoIndex)
                     $("#" + demoArray[demoIndex]["id"]).fadeIn("slow", function () {
 
