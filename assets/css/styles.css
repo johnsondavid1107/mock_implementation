@@ -43,3 +43,12 @@ ul{
 ul > li > ul > li {
     padding: 0px;
 }
+
+.end{
+    background-color: #30364d;
+
+}
+
+.end > h1 {
+    color: white !important;
+}

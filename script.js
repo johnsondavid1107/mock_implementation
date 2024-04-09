@@ -50,15 +50,20 @@ $(document).ready(function () {
 
     $(document).on("keydown", function (e) {
 
-        if (inTransition) {
+        if (e.code != "ArrowRight" && e.code != "ArrowLeft") {
+            console.log("Please usee the Right or Left Arrow Key");
             return
         }
 
+
+
         if (demoIndex + 1 < demoArray.length && !inTransition) {
-            inTransition = true;
+
 
             //Go forward in slideshow
             if (e.code === "ArrowRight") {
+                inTransition = true;
+
                 if (demoArray[demoIndex]["subSlide"] && subSlideIndex < demoArray[demoIndex]["subSlide"].length) {
 
                     $("#content").css("position", "relative");
@@ -78,14 +83,23 @@ $(document).ready(function () {
 
                     return
                 } else {
-                    console.log("no slides to show")
+                    console.log("no Subslides to show")
                 }
 
                 $("#" + demoArray[demoIndex]["id"]).fadeOut("slow", function () {
                     inTransition = true;
                     demoIndex++;
 
-                    console.log("Demo Index is  " + demoIndex)
+
+                    console.log(demoArray[demoIndex].id)
+
+                    if (demoArray[demoIndex].id === "Fin") {
+                        $("body").addClass("end");
+                    } else {
+                        $("body").removeClass("end");
+                    }
+
+
 
                     $("#" + demoArray[demoIndex]["id"]).fadeIn("slow", function () {
                         inTransition = false;
@@ -98,11 +112,22 @@ $(document).ready(function () {
             console.log("End of Slideshow")
         }
 
-        if (demoIndex <= demoArray.length && demoIndex !== 0) {
+
+
+        if (demoIndex <= demoArray.length && demoIndex !== 0 && !inTransition) {
+
+            //Handle back in slideshow
             if (e.code === "ArrowLeft") {
+                inTransition = true;
                 $("#" + demoArray[demoIndex]["id"]).fadeOut("slow", function () {
                     inTransition = true
                     demoIndex--;
+
+                    if (demoArray[demoIndex].id === "Fin") {
+                        $("body").addClass("end");
+                    } else {
+                        $("body").removeClass("end");
+                    }
 
                     console.log("Demo Index is  " + demoIndex)
                     $("#" + demoArray[demoIndex]["id"]).fadeIn("slow", function () {
@@ -113,6 +138,11 @@ $(document).ready(function () {
         } else {
             console.log("Begining of Slideshow, cant go back")
         }
+
+
+
+
+
     })
 
 
